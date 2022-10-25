@@ -9,6 +9,8 @@ import { Component } from '@angular/core';
 export class HomePage {
   frase: string;
   autor: string;
+  animacao: boolean = false;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(){
@@ -16,10 +18,12 @@ export class HomePage {
   }
 
   solicitarFrase(){
+    this.animacao = false;
     const url = "http://lucasreno.kinghost.net/frase";
     this.http.get(url).subscribe( resposta => {
       this.frase = resposta[0].frase;
       this.autor = resposta[0].autor;
+      this.animacao = true;
     });
   }
 
